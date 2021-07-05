@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="myshop.content.server" />
+        <module name="myshop.gateway" />
+        <module name="myshop.eureka" />
+        <module name="myshop.order.server" />
+        <module name="myshop.order.api" />
+        <module name="oauth.server" />
+        <module name="myshop.user.api" />
+        <module name="myshop.user.server" />
+        <module name="myshop.util" />
+        <module name="myshop.search.server" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="myshop.content.server" options="-parameters" />
+      <module name="myshop.eureka" options="-parameters" />
+      <module name="myshop.gateway" options="-parameters" />
+      <module name="myshop.order.api" options="-parameters" />
+      <module name="myshop.order.server" options="-parameters" />
+      <module name="myshop.search.server" options="-parameters" />
+      <module name="myshop.user.api" options="-parameters" />
+      <module name="myshop.user.server" options="-parameters" />
+      <module name="myshop.util" options="-parameters" />
+      <module name="oauth.server" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: mycloud-gateway
+  kafka:    #kafka的配置服务器
+    producer:
+      bootstrap-servers: 192.168.1.110:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  cloud:
+    gateway:
+      routes:
+      - id: userserver
+        uri: lb://user-server
+        predicates:
+        - Path=/api/user/**
+        filters:
+        - StripPrefix=1
+
+      - id: orderserver
+        uri: lb://order-server
+        predicates:
+        - Path=/api/order/**
+        filters:
+        - StripPrefix=1
+
+      globalcors:
+        corsConfigurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+            - GET
+            - POST
+            - PUT
+            - DELETE
+server:
+  port: 7002
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

@@ -1,0 +1,64 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: order-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/fescar-order?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: ok
+  main:
+    allow-bean-definition-overriding: true
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0
+  kafka:    #kafka的配置服务器
+    producer:
+      bootstrap-servers: 192.168.1.110:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+mybatis:
+  mapper-locations: mapper/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+feign:
+  httpclient:
+    connection-timeout: 10000 #建立网络链接时间
+  client:
+    config:
+      default: # 指定feignclients对应的名称 如果指定的是default 表示全局所有的client 的超时时间设置
+        connectTimeout: 10000
+        readTimeout: 10000  #读取数据时使用时间
+        loggerLevel: basic
+logging:
+  level:
+    root: INFO
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+name: zhangsan
+#apollo:
+#  bootstrap:
+#    enabled: true #远程配置
+#  meta: http://192.168.1.110:8080   #元数据的地址
+#app:
+#  id: order-server  #远程配置上创建的appId
+hystrix:  #解决hystrix的模式配置， 当hystrix断路器的隔离策略为THREAD时 ，fegin的传递参数中， 会将ServletRequestAttributes对象为null
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+          strategy: SEMAPHORE

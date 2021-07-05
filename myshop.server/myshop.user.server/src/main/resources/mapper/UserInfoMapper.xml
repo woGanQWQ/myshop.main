@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.UserInfoMapper">
+
+    <select id="getUserInfoById" resultType="com.zb.entity.UserInfo">
+        select
+                account as account,
+                id as id,
+                money as money,
+                name as name
+        from user_info
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getUserInfoListByMap" resultType="com.zb.entity.UserInfo" parameterType="java.util.Map">
+        select
+                account as account,
+                id as id,
+                money as money,
+                name as name
+        from user_info
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="account != null and account!=''">
+                    and account=#{account}
+                </if>
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="money != null and money!=''">
+                    and money=#{money}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getUserInfoCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from user_info
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="account != null and account!=''">
+                    and account=#{account}
+                </if>
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="money != null and money!=''">
+                    and money=#{money}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertUserInfo" parameterType="com.zb.entity.UserInfo">
+        insert into user_info(
+                        account,
+                        money,
+                        name)
+        values(
+                     #{account},
+                     #{money},
+                    #{name})
+    </insert>
+
+    <update id="updateUserInfo" parameterType="com.zb.entity.UserInfo">
+        update user_info
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="account != null and account!=''">
+                            account=#{account},
+                        </if>
+                        <if test="money != null and money!=''">
+                            money=money-#{money},
+                        </if>
+                        <if test="name != null and name!=''">
+                            name=#{name}
+                        </if>
+        </trim>
+    </update>
+</mapper>

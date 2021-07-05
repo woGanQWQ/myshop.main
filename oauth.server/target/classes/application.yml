@@ -1,0 +1,27 @@
+server:
+  port: 7003
+spring:
+  application:
+    name: oauth-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shop_oauth?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: ok
+  main:
+    allow-bean-definition-overriding: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+auth:
+  clientId: accp
+  clientSecret: accp
+encrypt:
+  key-store:
+    location: classpath:/myshop.jks
+    secret: myshop
+    alias: myshop
+    password: myshop

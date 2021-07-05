@@ -1,0 +1,45 @@
+server:
+  port: 11001
+spring:
+  application:
+    name: content-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shop_content?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: ok
+  main:
+    allow-bean-definition-overriding: true
+# mybatis:
+#  mapper-locations: mapper/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+feign:
+  httpclient:
+    connection-timeout: 10000 #建立网络链接时间
+  client:
+    config:
+      default: # 指定feignclients对应的名称 如果指定的是default 表示全局所有的client 的超时时间设置
+        connectTimeout: 10000
+        readTimeout: 10000  #读取数据时使用时间
+        loggerLevel: basic
+logging:
+  level:
+    root: INFO
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+hystrix:  #解决hystrix的模式配置， 当hystrix断路器的隔离策略为THREAD时 ，fegin的传递参数中， 会将ServletRequestAttributes对象为null
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+          strategy: SEMAPHORE

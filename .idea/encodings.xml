@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.api/myshop.order.api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.api/myshop.order.api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.api/myshop.user.api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.api/myshop.user.api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.content.server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.content.server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.order.server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.order.server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.search.server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.user.server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.server/myshop.user.server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myshop.util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth.server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth.server/src/main/java" charset="UTF-8" />
+  </component>
+</project>
